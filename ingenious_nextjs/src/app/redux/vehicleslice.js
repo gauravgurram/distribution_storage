@@ -1,6 +1,8 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
   export const fetchTruckCategory = createAsyncThunk('fetchTruckCategory', async () => {
     var tokenid = localStorage.getItem('tokenall');
@@ -11,7 +13,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.get(`${configure.API_BASE_URL}/api/truckcategory`,config);
+    const response = await axios.get(`${analyticsKey}/api/truckcategory`,config);
     return response.data;
   });
 
@@ -28,7 +30,7 @@ import configure from '../../../configure'
               'Authorization': `Bearer ${token}`,
           },
       };
-      const response = await axios.post(`${configure.API_BASE_URL}/api/truckcategory`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/truckcategory`, formData, config);
       return response.data;
   });
 
@@ -42,7 +44,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.delete(`${configure.API_BASE_URL}/api/truckcategory/`+id,config);
+    const response = await axios.delete(`${analyticsKey}/api/truckcategory/`+id,config);
     return response.data;
   });
 
@@ -56,7 +58,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.get(`${configure.API_BASE_URL}/api/truckcategory/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/truckcategory/`+id,config);
     return response.data;
   });
 
@@ -74,7 +76,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.post(`${configure.API_BASE_URL}/api/truckcategory/`+data.truckCategoryId,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/truckcategory/`+data.truckCategoryId,formData, config);
     return response.data;
   });
 
@@ -88,7 +90,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/vehiclefleet`,config);
+    const response = await axios.get(`${analyticsKey}/api/vehiclefleet`,config);
     console.log("Vehical data",response.data);
     return response.data;
   });
@@ -115,7 +117,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/vehiclefleet`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/vehiclefleet`, formData, config);
       return response.data;
   });
 
@@ -129,7 +131,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.delete(`${configure.API_BASE_URL}/api/vehiclefleet/`+id,config);
+    const response = await axios.delete(`${analyticsKey}/api/vehiclefleet/`+id,config);
     return response.data;
   });
 
@@ -145,7 +147,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/vehiclefleet/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/vehiclefleet/`+id,config);
     console.log("Vehical Update",response.data);
     return response.data;
   });
@@ -172,7 +174,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/vehiclefleet/`+data.vehicleId,formData, config);
+      const response = await axios.post(`${analyticsKey}/api/vehiclefleet/`+data.vehicleId,formData, config);
       return response.data;
   });
 

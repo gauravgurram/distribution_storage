@@ -2,7 +2,9 @@ import { Divider } from "@nextui-org/react";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 // <------------------------StatusDistribution API Code Start------------------>
 
@@ -17,7 +19,7 @@ export const fetchStatusDistribution = createAsyncThunk('fetchStatusDistribution
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/statusdistribution`,config);
+    const response = await axios.get(`${analyticsKey}/api/statusdistribution`,config);
     return response.data;
   });
 
@@ -37,7 +39,7 @@ export const addStatusDistribution = createAsyncThunk('addStatusDistribution', a
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/statusdistribution`, formData, config);
+    const response = await axios.post(`${analyticsKey}/api/statusdistribution`, formData, config);
     return response.data;
 });
 
@@ -51,7 +53,7 @@ export const deleteStatusDistribution = createAsyncThunk('deleteStatusDistributi
         },
     };
 
-  const response = await axios.delete(`${configure.API_BASE_URL}/api/statusdistribution/`+id,config);
+  const response = await axios.delete(`${analyticsKey}/api/statusdistribution/`+id,config);
   return response.data;
 });
 
@@ -66,7 +68,7 @@ export const editStatusDistribution = createAsyncThunk('editStatusDistribution',
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/statusdistribution/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/statusdistribution/`+id,config);
     return response.data;
   });
 
@@ -85,7 +87,7 @@ export const updateStatusDistribution = createAsyncThunk('updateStatusDistributi
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/statusdistribution/`+data.sid,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/statusdistribution/`+data.sid,formData, config);
     return response.data;
 });
 

@@ -1,6 +1,8 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 
   export const fetchRoles = createAsyncThunk('fetchRoles', async () => {
@@ -13,7 +15,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/role`,config);
+    const response = await axios.get(`${analyticsKey}/api/role`,config);
     return response.data;
   });
 
@@ -32,7 +34,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/role`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/role`, formData, config);
       return response.data;
   });
 
@@ -45,7 +47,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.delete(`${configure.API_BASE_URL}/api/role/`+id,config);
+    const response = await axios.delete(`${analyticsKey}/api/role/`+id,config);
     return response.data;
   });
 
@@ -59,7 +61,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/role/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/role/`+id,config);
     return response.data;
   });
 
@@ -78,7 +80,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/role/`+data.roleId,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/role/`+data.roleId,formData, config);
     return response.data;
   });
 

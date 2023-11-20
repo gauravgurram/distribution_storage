@@ -65,21 +65,18 @@ List all the software and tools that need to be installed before setting up the 
 1. Clone the repository.
 2. Change into the project directory.
 3. Run `npm run dev` in the `frontend` directory.
-4. Run `php artisan serve` in the `backend` directory.
 
 ## Configuration
 
 Explain any configuration steps that are necessary before running the application.
 
 - Set up environment variables.
-- Configure Laravel `.env` file.
 
 ## Running the Application
 
 Describe how to run the application locally.
 
 - For Next.js: `npm run dev`.
-- For Laravel: `php artisan serve`.
 
 ## Database
 

@@ -1,6 +1,8 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure';
+
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 export const fetchRoles = createAsyncThunk('fetchRoles', async () => {
   var tokenid = localStorage.getItem('tokenall');
@@ -11,7 +13,7 @@ export const fetchRoles = createAsyncThunk('fetchRoles', async () => {
           'Authorization': `Bearer ${token}`,
       },
   };
-    const response = await axios.get(`${configure.API_BASE_URL}/api/role`,config);
+  const response = await axios.get(`${analyticsKey}/api/role`, config);
     return response.data;
   });
 
@@ -33,7 +35,7 @@ export const addRegister = createAsyncThunk('addRegister', async (data) =>
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/user`, formData, config);
+    const response = await axios.post(`${analyticsKey}/api/user`, formData, config);
     return response.data;
 });
 
@@ -46,7 +48,7 @@ export const login = createAsyncThunk('login', async (data) =>
     formData.append("login", data.email);
     formData.append("password", data.password);
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/login`, formData, {
+    const response = await axios.post(`${analyticsKey}/api/login`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
@@ -59,7 +61,7 @@ export const logout = createAsyncThunk('logout', async (data) => {
   const formData = new FormData();
   formData.append("login", data.tokenId);
 
-  const response = await axios.post(`${configure.API_BASE_URL}/api/logout`, formData, {
+  const response = await axios.post(`${analyticsKey}/api/logout`, formData, {
     headers: {
       Authorization: `Bearer ${data.tokenId}` 
     },

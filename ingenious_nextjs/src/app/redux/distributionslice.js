@@ -1,6 +1,7 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
 
 
   export const fetchDistribution = createAsyncThunk('fetchDistribution', async () => {
@@ -14,7 +15,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution_header`,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution_header`,config);
     return response.data;
   });
 
@@ -30,7 +31,7 @@ import configure from '../../../configure'
     };
 
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution`,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution`,config);
     return response.data;
   });
 
@@ -45,7 +46,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/clients`,config);
+    const response = await axios.get(`${analyticsKey}/api/clients`,config);
     return response.data;
   });
 
@@ -81,7 +82,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/distribution_header`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/distribution_header`, formData, config);
                   
       return response.data;
   });
@@ -106,7 +107,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/distribution_lines`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/distribution_lines`, formData, config);
       return response.data;
   });
 
@@ -123,7 +124,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution_header/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution_header/`+id,config);
     return response.data;
   });
 
@@ -140,7 +141,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution_lines/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution_lines/`+id,config);
     return response.data;
   });
 
@@ -156,7 +157,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution_header/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution_header/`+id,config);
     return response.data;
   });
 
@@ -186,7 +187,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/distribution_lines/`+data.distributionId,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/distribution_lines/`+data.distributionId,formData, config);
     return response.data;
   });
 
@@ -204,7 +205,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.delete(`${configure.API_BASE_URL}/api/distribution_header/`+id,config);
+    const response = await axios.delete(`${analyticsKey}/api/distribution_header/`+id,config);
     return response.data;
   });
 
@@ -222,7 +223,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/driver`,config);
+    const response = await axios.get(`${analyticsKey}/api/driver`,config);
     return response.data;
   });
 
@@ -239,7 +240,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/vehiclefleet`,config);
+    const response = await axios.get(`${analyticsKey}/api/vehiclefleet`,config);
     console.log("Vehical data",response.data);
     return response.data;
   });
@@ -256,7 +257,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/truckcategory`,config);
+    const response = await axios.get(`${analyticsKey}/api/truckcategory`,config);
     return response.data;
   });
 
@@ -272,7 +273,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/city`,config);
+    const response = await axios.get(`${analyticsKey}/api/city`,config);
     return response.data;
   });
 
@@ -288,7 +289,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/statusdistribution`,config);
+    const response = await axios.get(`${analyticsKey}/api/statusdistribution`,config);
     return response.data;
   });
 
@@ -309,7 +310,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/import`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/import`, formData, config);
                   console.log(response.data)
       return response.data;
   });
@@ -331,7 +332,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/distribution_header/`+data.distributionId,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/distribution_header/`+data.distributionId,formData, config);
     return response.data;
   });
 
@@ -353,7 +354,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/mapping`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/mapping`, formData, config);
       return response.data;
   });
 

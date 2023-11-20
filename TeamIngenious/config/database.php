@@ -1,6 +1,26 @@
 <?php
 
 use Illuminate\Support\Str;
+use Aws\SecretsManager\SecretsManagerClient;
+use Aws\Credentials\Credentials;
+
+$credentials = new Credentials(
+    env('AWS_ACCESS_KEY_ID'),
+    env('AWS_SECRET_ACCESS_KEY'),
+    env('AWS_SESSION_TOKEN')
+);
+
+$secretsManager = new SecretsManagerClient([
+    'version' => 'latest',
+    'region' => env('AWS_DEFAULT_REGION', 'ap-south-1'),
+    'credentials' => $credentials,
+]);
+
+
+$secretName = 'DB_Credentials'; // Change this to your actual secret name
+
+$secret = $secretsManager->getSecretValue(['SecretId' => $secretName])['SecretString'];
+$secretData = json_decode($secret, true);
 
 return [
 
@@ -46,11 +66,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $secretData['DB_HOST'],
+            'port' => $secretData['DB_PORT'],
+            'database' => $secretData['DB_DATABASE'],
+            'username' => $secretData['DB_USERNAME'],
+            'password' => $secretData['DB_PASSWORD'],
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

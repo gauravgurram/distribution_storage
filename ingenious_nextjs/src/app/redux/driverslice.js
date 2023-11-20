@@ -1,7 +1,9 @@
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 
 export const fetchDrivers = createAsyncThunk('fetchDrivers', async () => {
@@ -15,7 +17,7 @@ export const fetchDrivers = createAsyncThunk('fetchDrivers', async () => {
       },
   };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/driver`,config);
+    const response = await axios.get(`${analyticsKey}/api/driver`,config);
     return response.data;
   });
 
@@ -28,7 +30,7 @@ export const fetchTruckCategory = createAsyncThunk('fetchTruckCategory', async (
           'Authorization': `Bearer ${token}`,
       },
   };
-const response = await axios.get(`${configure.API_BASE_URL}/api/truckcategory`,config);
+const response = await axios.get(`${analyticsKey}/api/truckcategory`,config);
 return response.data;
 });
 
@@ -51,7 +53,7 @@ export const addDrivers = createAsyncThunk('addDrivers', async (data) =>
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/driver`, formData, config);
+    const response = await axios.post(`${analyticsKey}/api/driver`, formData, config);
     return response.data;
 });
 
@@ -65,7 +67,7 @@ export const deleteDriverData = createAsyncThunk('deleteDriverData',async (id)=>
       },
   };
 
-  const response = await axios.delete(`${configure.API_BASE_URL}/api/driver/`+id,config);
+  const response = await axios.delete(`${analyticsKey}/api/driver/`+id,config);
   return response.data;
 });
 
@@ -81,7 +83,7 @@ export const UpdateDriverId = createAsyncThunk('UpdateDriverId',async (id)=>{
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/driver/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/driver/`+id,config);
     return response.data;
   });
 
@@ -105,7 +107,7 @@ export const UpdateDrivers = createAsyncThunk('UpdateDrivers',async (data)=>{
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/driver/`+data.driverId,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/driver/`+data.driverId,formData, config);
       return response.data; 
   });
 

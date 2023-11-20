@@ -1,6 +1,8 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 
   export const fetchTypeDistribution = createAsyncThunk('fetchTypeDistribution', async () => {
@@ -13,7 +15,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution`,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution`,config);
     return response.data;
   });
 
@@ -26,7 +28,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.get(`${configure.API_BASE_URL}/api/mapping`,config);
+    const response = await axios.get(`${analyticsKey}/api/mapping`,config);
     return response.data;
   });
 
@@ -44,7 +46,7 @@ import configure from '../../../configure'
           },
       };
 
-      const response = await axios.post(`${configure.API_BASE_URL}/api/distribution`, formData, config);
+      const response = await axios.post(`${analyticsKey}/api/distribution`, formData, config);
       return response.data;
   });
 
@@ -58,7 +60,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.delete(`${configure.API_BASE_URL}/api/distribution/`+id,config);
+    const response = await axios.delete(`${analyticsKey}/api/distribution/`+id,config);
     return response.data;
   });
 
@@ -72,7 +74,7 @@ import configure from '../../../configure'
         },
     };
 
-    const response = await axios.get(`${configure.API_BASE_URL}/api/distribution/`+id,config);
+    const response = await axios.get(`${analyticsKey}/api/distribution/`+id,config);
     return response.data;
   });
 
@@ -88,7 +90,7 @@ import configure from '../../../configure'
             'Authorization': `Bearer ${token}`,
         },
     };
-    const response = await axios.post(`${configure.API_BASE_URL}/api/distribution/`+data.type_id,formData, config);
+    const response = await axios.post(`${analyticsKey}/api/distribution/`+data.type_id,formData, config);
     return response.data;
   });
 

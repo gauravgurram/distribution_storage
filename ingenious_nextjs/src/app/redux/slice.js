@@ -1,6 +1,8 @@
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 const axios = require('axios'); 
-import configure from '../../../configure'
+// import configure from '../../../configure'
+const analyticsKey = process.env.NEXT_PUBLIC_ANALYTICS_KEY;
+
 
 export const fetchClient = createAsyncThunk('fetchClient', async () => {
   var tokenid = localStorage.getItem('tokenall');
@@ -12,7 +14,7 @@ export const fetchClient = createAsyncThunk('fetchClient', async () => {
       },
   };
 
-  const response = await axios.get(`${configure.API_BASE_URL}/api/clients`,config);
+  const response = await axios.get(`${analyticsKey}/api/clients`,config);
   return response.data;
 });
 
@@ -34,7 +36,7 @@ export const addClientData = createAsyncThunk('addClientData', async (data) =>
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/clients`, formData,config);
+    const response = await axios.post(`${analyticsKey}/api/clients`, formData,config);
     return response.data;
 });
 
@@ -48,7 +50,7 @@ export const deleteClientData = createAsyncThunk('deleteClientData',async (id)=>
       },
   };
 
-  const response = await axios.delete(`${configure.API_BASE_URL}/api/clients/`+id,config);
+  const response = await axios.delete(`${analyticsKey}/api/clients/`+id,config);
   return response.data;
 });
 
@@ -63,7 +65,7 @@ export const UpdateClientId = createAsyncThunk('UpdateClientId',async (id)=>{
           'Authorization': `Bearer ${token}`,
       },
   };
-  const response = await axios.get(`${configure.API_BASE_URL}/api/clients/`+id,config);
+  const response = await axios.get(`${analyticsKey}/api/clients/`+id,config);
   return response.data;
 });
 
@@ -85,7 +87,7 @@ export const UpdateClient = createAsyncThunk('UpdateClient',async (data)=>{
       },
   };
 
-  const response = await axios.post(`${configure.API_BASE_URL}/api/clients/`+data.clientId,formData, config);
+  const response = await axios.post(`${analyticsKey}/api/clients/`+data.clientId,formData, config);
   return response.data;
 });
 
@@ -101,7 +103,7 @@ export const fetchCity = createAsyncThunk('fetchCity', async () => {
 
   // const response = await axios.get('${config.API_BASE_URL}/city',config);
 
-  const response = await axios.get(`${configure.API_BASE_URL}/api/city`, config);
+  const response = await axios.get(`${analyticsKey}/api/city`, config);
 
   return response.data;
 });
@@ -120,7 +122,7 @@ export const addCity = createAsyncThunk('addCity', async (data) =>
         },
     };
 
-    const response = await axios.post(`${configure.API_BASE_URL}/api/city`, formData, config);
+    const response = await axios.post(`${analyticsKey}/api/city`, formData, config);
     return response.data;
 });
 
@@ -134,7 +136,7 @@ export const deleteCity = createAsyncThunk('deleteCity',async (id)=>{
       },
   };
 
-  const response = await axios.delete(`${configure.API_BASE_URL}/api/city/`+id,config);
+  const response = await axios.delete(`${analyticsKey}/api/city/`+id,config);
   return response.data;
 });
 
@@ -148,7 +150,7 @@ export const UpdateCityId = createAsyncThunk('UpdateCityId',async (id)=>{
           'Authorization': `Bearer ${token}`,
       },
   };
-  const response = await axios.get(`${configure.API_BASE_URL}/api/city/`+id,config);
+  const response = await axios.get(`${analyticsKey}/api/city/`+id,config);
   return response.data;
 });
 
@@ -166,7 +168,7 @@ export const UpdateCity = createAsyncThunk('UpdateCity',async (data)=>{
       },
   };
 
-  const response = await axios.post(`${configure.API_BASE_URL}/api/city/`+data.cityId,formData, config);
+  const response = await axios.post(`${analyticsKey}/api/city/`+data.cityId,formData, config);
   return response.data;
 });
 
